@@ -1,0 +1,354 @@
+$lightGreen: #b9e7e7;
+$green: teal;
+$white: #fff;
+$gray: gray;
+$fzXHeader: 3rem;
+$fzHeader: 2.5rem;
+$fzTitle: 1.25rem;
+$fzContent: 1rem;
+$fzText: 0.75rem;
+$s075: 0.75rem;
+$s125: 1.25rem;
+$s15: 1.5rem;
+$s20: 2rem;
+$s25: 2.5rem;
+$s30: 3rem;
+$s35: 3.5rem;
+
+@mixin rflex($justify, $align) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+@mixin cflex($justify, $align) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $align;
+  align-items: $justify;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  a {
+    text-decoration: none;
+  }
+}
+
+.button {
+  width: max-content;
+  padding: $s075 $s125;
+  outline: none;
+  border: 1px solid $green;
+  border-radius: $s075;
+  color: $green;
+  background-color: $white;
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    border: 1px solid $white;
+    background-color: $lightGreen;
+    color: $white;
+    transition: all 0.5s ease;
+  }
+}
+.app {
+  display: flex;
+  justify-content: center;
+  .container {
+    width: 1024px;
+    .auth {
+      @include cflex(center, center);
+      height: 100vh;
+      background-color: $lightGreen;
+
+      h1 {
+        margin-bottom: 1.25rem;
+        font-size: $fzHeader;
+        color: $green;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        padding: 2.5rem;
+        width: 20rem;
+        background-color: $white;
+        gap: $s125;
+
+        input {
+          padding: $s075;
+          border: none;
+          border-bottom: 1px solid $gray;
+        }
+
+        button {
+          padding: $s075;
+          border: none;
+          background-color: $green;
+          color: $white;
+          border-radius: $s075;
+          cursor: pointer;
+        }
+        span {
+          font-size: $fzText;
+          text-align: center;
+        }
+      }
+    }
+    .navbar {
+      .container {
+        @include rflex(space-between, center);
+        padding: $s075 0;
+        .logo {
+          img {
+            width: 7.5rem;
+          }
+        }
+        .links {
+          display: flex;
+          align-items: center;
+          gap: $s075;
+        }
+        h6 {
+          font-size: 1rem;
+          font-weight: 300;
+        }
+        span {
+          cursor: pointer;
+        }
+        .write {
+          @include rflex(center, center);
+          width: $s35;
+          height: $s35;
+          border-radius: 50%;
+          font-weight: 300;
+          background-color: $lightGreen;
+          border: 1px solid transparent;
+          transition: all 0.5s ease;
+
+          &:hover {
+            color: $green;
+            background-color: $white;
+            border: 1px solid $green;
+            transition: all 0.5s ease;
+          }
+        }
+      }
+    }
+    .home {
+      .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+        margin-top: $s35;
+
+        .post {
+          display: flex;
+          gap: 6rem;
+
+          &:nth-child(2n + 1) {
+            flex-direction: row-reverse;
+          }
+          .img {
+            flex: 2;
+            position: relative;
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: $s125;
+              left: $s125;
+              width: 100%;
+              height: 100%;
+              background-color: $lightGreen;
+              z-index: -1;
+            }
+
+            img {
+              width: 100%;
+              max-height: 400px;
+              object-fit: cover;
+            }
+          }
+          .content {
+            @include cflex(space-between, center);
+            flex: 3;
+            gap: $s125;
+
+            h1 {
+              font-size: $fzXHeader;
+            }
+            p {
+              font-size: $fzContent;
+            }
+          }
+        }
+      }
+    }
+    .single {
+      display: flex;
+      gap: $s35;
+
+      .content {
+        flex: 5;
+        display: flex;
+        flex-direction: column;
+        gap: $s25;
+
+        img {
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+          gap: $s075;
+
+          img {
+            width: $s35;
+            height: $s35;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          span {
+            font-weight: 700;
+          }
+          .edit {
+            display: flex;
+            gap: 4px;
+
+            img {
+              width: $s125;
+              height: $s125;
+              cursor: pointer;
+            }
+          }
+        }
+        h1 {
+          font-size: $fzHeader;
+        }
+        p {
+          text-align: justify;
+        }
+      }
+      .menu {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        gap: $s15;
+
+        h1 {
+          font-size: $fzContent;
+          color: $gray;
+        }
+
+        .post {
+          display: flex;
+          flex-direction: column;
+          gap: $s075;
+          margin-bottom: $s15;
+
+          img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+
+    .add {
+      display: flex;
+      gap: $s15;
+      margin-top: $s15;
+      .content {
+        flex: 5;
+        display: flex;
+        flex-direction: column;
+        gap: $s15;
+
+        input {
+          padding: $s075;
+          border: 1px solid lightgray;
+        }
+        .editorContainer {
+          height: 300px;
+          overflow: scroll;
+          border: 1px solid lightgray;
+          .editor {
+            height: 100%;
+            border: none;
+          }
+        }
+      }
+      .menu {
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+        gap: $s15;
+
+        .item {
+          @include cflex(flex-start,space-between);
+          flex: 1;
+          padding: $s075;
+          border: 1px solid lightgray;
+
+          font-size: $fzText;
+          color: $gray;
+
+          h1 {
+            font-size: $fzTitle;
+          }
+
+          .file {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+
+          .buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            :first-child{
+              cursor: pointer;
+              color: $green;
+              background-color: $white;
+              border: 1px solid $green;
+              padding: 4px 6px;
+            }
+            :last-child{
+              cursor: pointer;
+              color: $white;
+              background-color: $green;
+              border: 1px solid $green;
+              padding: 4px 6px;
+            }
+          }
+          .cat {
+            display: flex;
+            align-items: center;
+            gap: $s075;
+            color: $green
+          }
+        }
+      }
+    }
+    footer {
+      @include rflex(space-between, center);
+      margin-top: 6rem;
+      padding: $s125;
+      font-size: $fzText;
+      background-color: $lightGreen;
+      img {
+        height: $s35;
+      }
+    }
+  }
+}
